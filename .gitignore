@@ -1,5 +1,5 @@
-bin\
-obj\
+\MyCMS\bin\
+\MyCMS\obj\
 \_skins\
 \_data\
 \_temp\
