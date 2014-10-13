@@ -1,7 +1,7 @@
-\MyCMS.Web\bin\
-\MyCMS.Web\obj\
-\_skins\
-\_data\
-\_temp\
-\_backup\
-\log\
+bin/
+obj/
+/_skins/
+/_data/
+/_temp/
+/_backup/
+/log/
