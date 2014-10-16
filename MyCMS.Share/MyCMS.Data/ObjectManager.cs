@@ -7,8 +7,6 @@ namespace MyCMS.Data
 {
     public class ObjectManager
     {
-        private int GlobalDBString;
-        private string GlobalDBDriver;
     
         public EntityObject CurObject
         {
@@ -21,7 +19,7 @@ namespace MyCMS.Data
             }
         }
 
-        public IDatabase CurDatabase
+        public MyCMS.Data.Database CurDatabase
         {
             get
             {

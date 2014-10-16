@@ -13,7 +13,8 @@ namespace MyCMS.Data
         Sum,
         Substring,
         None,
-        Total,
-        Distinct,
+        Count,
+        //Total,
+        //Distinct,
     }
 }

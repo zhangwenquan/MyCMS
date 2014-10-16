@@ -2,19 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace MyCMS.Data
 {
     public class SqlStatement
     {
-        public System.Data.CommandType Type
+        string sqlClause;
+        List<DataParameter> parameters;
+        CommandType type;
+
+        public SqlStatement()
+        {
+            type = CommandType.Text;
+            parameters = new List<DataParameter>();
+        }
+        
+        public CommandType Type
         {
             get
             {
-                throw new System.NotImplementedException();
+                return type;
             }
             set
             {
+                type = value;
             }
         }
 
@@ -22,10 +34,11 @@ namespace MyCMS.Data
         {
             get
             {
-                throw new System.NotImplementedException();
+                return sqlClause;
             }
             set
             {
+                sqlClause = value;
             }
         }
 
@@ -33,10 +46,11 @@ namespace MyCMS.Data
         {
             get
             {
-                throw new System.NotImplementedException();
+                return parameters;
             }
             set
             {
+                parameters = value;
             }
         }
     }

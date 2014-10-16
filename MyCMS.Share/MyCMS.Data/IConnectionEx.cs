@@ -12,5 +12,11 @@ namespace MyCMS.Data
             get;
             set;
         }
+
+        bool Create
+        {
+            get;
+            set;
+        }
     }
 }

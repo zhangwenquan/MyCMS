@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace MyCMS.Data
 {
@@ -19,16 +20,16 @@ namespace MyCMS.Data
             set;
         }
 
-        SqlStatement Query();
+        DataTable Query(SqlStatement sql);
 
-        SqlStatement QueryScalar();
+        object QueryScalar(SqlStatement sql);
 
-        SqlStatement Update();
+        int Update(SqlStatement sql);
 
         void Commit();
 
         void Rollback();
 
-        string TableExists();
+        bool TableExists(string tablename);
     }
 }

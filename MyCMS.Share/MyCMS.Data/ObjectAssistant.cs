@@ -9,49 +9,63 @@ namespace MyCMS.Data
     {
         private Dictionaries _d1;
 
-        public void DicForTable()
+        public Dictionary<string, ObjectManager> DicForTable()
         {
-            throw new System.NotImplementedException();
+            return _d1.ObjColumnDic;
         }
 
         public void LoadDataSource(string dir)
         {
-            throw new System.NotImplementedException();
+            _d1.LoadDataSource(dir, null);
         }
 
         public void LoadDataSource(string dir, string[] dbs)
         {
-            throw new System.NotImplementedException();
+            _d1.LoadDataSource(dir, dbs);
         }
 
         public void LoadDBConnectionString(string connStr, string dbDriver)
         {
-            throw new System.NotImplementedException();
+            _d1.SetGlobalDBString(connStr, dbDriver);
         }
 
         public Dictionary<string, IDatabase> GetDatabases()
         {
-            throw new System.NotImplementedException();
+            return _d1.DatabaseDict;
         }
 
         public Dictionary<Type, ObjectManager> GetObjects()
         {
-            throw new System.NotImplementedException();
+            return _d1.ObjectManagerDict;
         }
 
         public Dictionary<IDatabase, IConnection> GetConnections()
         {
-            throw new System.NotImplementedException();
+            return _d1.ConnectionDict;
         }
 
         public IConnection CreateConnection(Type key, bool isTransfer = false)
         {
-            throw new System.NotImplementedException();
+            var dic = _d1.ObjectManagerDict[key];
+            IConnection conn = dic != null ? dic.CurDatabase.Driver.CreateConnection(dic.CurDatabase.ConnectionString) : null;
+            if (conn != null)
+            {
+                conn.IsTransaction = isTransfer;
+            }
+
+            return conn;
         }
 
         public IConnection CreateConnection(string key, bool isTransfer = false)
         {
-            throw new System.NotImplementedException();
+            var dic = _d1.ObjColumnDic[key];
+            IConnection conn = dic != null ? dic.CurDatabase.Driver.CreateConnection(dic.CurDatabase.ConnectionString) : null;
+            if (conn != null)
+            {
+                conn.IsTransaction = isTransfer;
+            }
+
+            return conn;
         }
 
         public object Insert(IConnection conn, object obj, string[] fields, string tablename)

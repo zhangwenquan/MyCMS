@@ -7,12 +7,27 @@ namespace MyCMS.Data
 {
     public interface IDbDriver
     {
+        string Prefix
+        {
+            get;
+        }
+    
         string GetCriteria(CriteriaType type);
 
-        string FormatField(string filed, Adorns adorns);
+        string FormatField(string field, Adorns adorn);
 
         string FormatTable(string table);
 
-        string FormatSQL();
+        SqlStatement FormatSQL(SqlStatement sql);
+
+        string BuildPaging(string tablename, string fields, string where, string orders, int from, int count);
+
+        IConnection CreateConnection(string connectionString);
+
+        IConnection CreateConnection(string connectionString, bool create);
+
+        string FormatField(Adorns adorn, string field, int start, int length);
+
+        string FormatField(ConListField field);
     }
 }
