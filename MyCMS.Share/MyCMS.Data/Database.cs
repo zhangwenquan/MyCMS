@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace MyCMS.Data
 {
@@ -32,13 +33,33 @@ namespace MyCMS.Data
 
         public IDbDriver Driver
         {
-            get { return dbDriver; }
+            get 
+            {
+                if (dbDriver == null)
+                {
+                    if (string.IsNullOrEmpty(driver))
+                    {
+                        throw new Exception("DriverRequired");
+                    }
+                    try
+                    {
+                        Type type = Type.GetType(driver);
+                        dbDriver = (IDbDriver)Activator.CreateInstance(type);
+                    }
+                    catch
+                    {
+                        throw new Exception("UnknownDriver");
+                    }
+                }
+                
+                return dbDriver;
+            }
             set { dbDriver = value; }
         }
 
         public IConnection CreateConnection()
         {
-            return dbDriver.CreateConnection(connectionString);
+            return Driver.CreateConnection(connectionString);
         }
 
         private Dictionary<string, EntityObject> entityObjs;
@@ -46,6 +67,26 @@ namespace MyCMS.Data
         public Dictionary<string, EntityObject> EntityObjs
         {
             get { return entityObjs; }
+        }
+
+        public Database()
+        {
+            entityObjs = new Dictionary<string, EntityObject>();
+        }
+
+        public void FromXml(XmlElement e)
+        {
+            EntityObjs.Clear();
+            name = e.GetAttribute("name");
+            driver = e.GetAttribute("driver");
+            connectionString = e.GetAttribute("connectionString");
+
+            foreach (XmlElement element in e.SelectNodes("Object"))
+            {
+                EntityObject entity2Table = new EntityObject();
+                entity2Table.FromXml(element);
+                entityObjs.Add(entity2Table.TableName, entity2Table);
+            }
         }
     }
 }

@@ -31,5 +31,18 @@ namespace MyCMS.Data.Test
             DataTable o = conn.Query(sql);
             Assert.AreEqual(15, o.Rows.Count);
         }
+
+        [TestMethod]
+        public void LoadDatabasesTest()
+        {
+            Dictionaries ds = new Dictionaries();
+            ds.SetGlobalDBString("conn", "MyCMS.Data.SqlDbDriver, MyCMS.Data");
+            ds.LoadDataSource("D:\\", null);
+            Assert.AreEqual(1,ds.DatabaseDict.Count);
+            Assert.AreEqual(true, ds.DatabaseDict["We7.CMS.Common"] != null);
+            Assert.AreEqual(38,((Database)(ds.DatabaseDict["We7.CMS.Common"])).EntityObjs.Count);
+            Assert.AreEqual(34, ((Database)(ds.DatabaseDict["We7.CMS.Common"])).EntityObjs["Channel"].PropertyDict.Count);
+            Assert.AreEqual(6, ((Database)(ds.DatabaseDict["We7.CMS.Common"])).EntityObjs["VoteAnswerStat"].PropertyDict.Count);
+        }
     }
 }

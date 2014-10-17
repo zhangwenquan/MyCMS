@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Xml;
 
 namespace MyCMS.Data
 {
@@ -11,7 +12,7 @@ namespace MyCMS.Data
         Dictionary<string, IDatabase> databaseDict;
         Dictionary<IDatabase, IConnection> connectionDict;
         Dictionary<string, ObjectManager> objColumnDic;
-        Dictionary<Type, ObjectManager> objectManager;
+        Dictionary<Type, ObjectManager> objectManagerDict;
 
         string GlobalDBString;
         string GlobalDBDriver;
@@ -21,7 +22,7 @@ namespace MyCMS.Data
             databaseDict = new Dictionary<string, IDatabase>();
             connectionDict = new Dictionary<IDatabase, IConnection>();
             objColumnDic = new Dictionary<string, ObjectManager>();
-            objectManager = new Dictionary<Type, ObjectManager>();
+            objectManagerDict = new Dictionary<Type, ObjectManager>();
         }
         /// <summary>
         /// 每个数据库对应的Connection都不同，因此有必要封装每个Connection到字典表
@@ -58,18 +59,74 @@ namespace MyCMS.Data
         {
             get
             {
-                return objectManager;
+                return objectManagerDict;
             }
         }
     
         public void LoadDatabases(string filename)
         {
-            LoadDatabases(filename, null);
+            
         }
 
         public void LoadDatabases(string filename, string[] dbs)
         {
-            
+            XmlDocument doc = new XmlDocument();
+            doc.Load(filename);
+
+            foreach (XmlElement element in doc.SelectNodes("/Objects/Database"))
+            {
+                Database database = new Database();
+                database.FromXml(element);
+
+                if (dbs != null && !InArray(database.Name, dbs))
+                {
+                    continue;
+                }
+
+                if (!string.IsNullOrEmpty(GlobalDBString))
+                {
+                    database.ConnectionString = GlobalDBString.Replace("{$App}", AppDomain.CurrentDomain.BaseDirectory);
+                    database.DriverStr = GlobalDBDriver.Replace("{$Current}", Path.GetDirectoryName(filename));
+                }
+
+                databaseDict.Add(database.Name, database);
+                connectionDict.Add(database, database.CreateConnection());
+
+                foreach (EntityObject entity2Table in database.EntityObjs.Values)
+                {
+                    //entity2Table.Build();
+                    EntityObject copyEntity = entity2Table.Clone() as EntityObject;
+                    
+
+                    ObjectManager om = new ObjectManager();
+                    entity2Table.IsDataTable = false;
+                    entity2Table.TypeForDT = null;
+                    om.CurDatabase = database;
+                    om.CurObject = entity2Table;
+                    om.ObjType = entity2Table.ObjType;
+                    //objectManagerDict.Add(entity2Table.ObjType, om);
+
+                    //copyEntity.Build();
+                    om = new ObjectManager();
+                    copyEntity.IsDataTable = true;
+                    copyEntity.TypeForDT = typeof(TableInfo);
+                    copyEntity.ObjType = typeof(TableInfo);
+                    om.CurDatabase = database;
+                    om.CurObject = copyEntity;
+                    om.ObjType = copyEntity.ObjType;
+                    objColumnDic.Add(copyEntity.TableName, om);
+                }
+            }
+        }
+
+        bool InArray(string name, string[] dbs)
+        {
+            foreach (string db in dbs)
+            {
+                if (string.Compare(name, db, true) == 0)
+                    return true;
+            }
+            return false;
         }
 
         public void LoadDataSource(string root, string[] dbs)

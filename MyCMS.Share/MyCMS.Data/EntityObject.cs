@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
+using System.Reflection;
 
 namespace MyCMS.Data
 {
-    public class EntityObject
+    public class EntityObject : ICloneable
     {
         private string tableName;
 
@@ -69,6 +71,56 @@ namespace MyCMS.Data
         {
             get { return propertyDict; }
             set { propertyDict = value; }
+        }
+
+        public bool IsIdentity
+        {
+            get {
+                return !string.IsNullOrEmpty(identityName);
+            }
+        }
+
+        public EntityObject()
+        {
+            propertyDict = new Dictionary<string, Property>();
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
+        public void FromXml(XmlElement e)
+        {
+            tableName = e.GetAttribute("table");
+            typeName = e.GetAttribute("type");
+            primaryKey = e.GetAttribute("primaryKey");
+            identityName = e.GetAttribute("identity");
+            description = e.GetAttribute("description");
+
+            foreach (XmlElement element in e.SelectNodes("Property"))
+            {
+                Property p = new Property();
+                p.FromXml(element);
+                propertyDict.Add(p.Name, p);
+            }
+        }
+
+        public void Build()
+        {
+            objType = Type.GetType(typeName);
+            if (objType == null)
+                throw new Exception("UnknownObject");
+
+            PropertyInfo[] pis = objType.GetProperties();
+
+            foreach (PropertyInfo pi in pis)
+            {
+                if (propertyDict.ContainsKey(pi.Name))
+                {
+                    propertyDict[pi.Name].Info = pi;
+                }
+            }
         }
     }
 }

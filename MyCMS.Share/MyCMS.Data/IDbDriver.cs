@@ -14,7 +14,7 @@ namespace MyCMS.Data
     
         string GetCriteria(CriteriaType type);
 
-        string FormatField(string field, Adorns adorn);
+        string FormatField(Adorns adorn, string field);
 
         string FormatTable(string table);
 

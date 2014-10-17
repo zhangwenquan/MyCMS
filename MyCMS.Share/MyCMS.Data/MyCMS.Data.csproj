@@ -42,6 +42,7 @@
     <Compile Include="Adorns.cs" />
     <Compile Include="BaseDriver.cs" />
     <Compile Include="BaseHandle.cs" />
+    <Compile Include="ConListField.cs" />
     <Compile Include="Criteria.cs" />
     <Compile Include="CriteriaMode.cs" />
     <Compile Include="CriteriaType.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Property.cs" />
     <Compile Include="SqlDbDriver.cs" />
     <Compile Include="SqlStatement.cs" />
+    <Compile Include="TableInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data.cd" />

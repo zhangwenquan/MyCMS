@@ -39,7 +39,7 @@
   <Class Name="MyCMS.Data.Dictionaries" Collapsed="true">
     <Position X="17.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAACAAEAAAAAEAAEAAAAAAEAQAgQAEAAIQAgIAAQA=</HashCode>
+      <HashCode>AgAAACAAEAAAAAEAAEAQAAAAEAQAgQAEEAIQAgIAAQA=</HashCode>
       <FileName>Dictionaries.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -58,21 +58,26 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="MyCMS.Data.EntityObject">
+  <Class Name="MyCMS.Data.EntityObject" Collapsed="true">
     <Position X="12.25" Y="1.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AKAAAAEAABAhAAAQICAAAAAAAAAAABABEACQARCAgAA=</HashCode>
+      <HashCode>AKAAAAEAABAhAAAQICAAAAAAAAIAgBABECCQARCAgBA=</HashCode>
       <FileName>EntityObject.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="MyCMS.Data.Property" Collapsed="true">
+  <Class Name="MyCMS.Data.Property">
     <Position X="14" Y="2.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AACAAAAAAAAggAAAIIIIAAQCAAAFAAEAQSAAAEAAgAA=</HashCode>
       <FileName>Property.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -165,6 +170,13 @@
       <FileName>ConListField.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="MyCMS.Data.TableInfo">
+    <Position X="17.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TableInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="MyCMS.Data.IConnection">
     <Position X="0.5" Y="7.75" Width="1.75" />
     <TypeIdentifier>
@@ -173,7 +185,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="MyCMS.Data.IDbDriver" Collapsed="true">
-    <Position X="14" Y="4" Width="1.5" />
+    <Position X="15.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEEAAAEAAAICAAAEAAAAAAAAAAAAAIA=</HashCode>
       <FileName>IDbDriver.cs</FileName>
