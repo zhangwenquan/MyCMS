@@ -7,70 +7,103 @@ namespace MyCMS.Data
 {
     public class Criteria
     {
+        string field;
         public string Field
         {
             get
             {
-                throw new System.NotImplementedException();
+                return field;
             }
             set
             {
+                field = value;
             }
         }
 
+        CriteriaType type;
         public CriteriaType Type
         {
             get
             {
-                throw new System.NotImplementedException();
+                return type;
             }
             set
             {
+                type = value;
             }
         }
 
+        CriteriaMode mode;
         public CriteriaMode Mode
         {
             get
             {
-                throw new System.NotImplementedException();
+                return mode;
             }
             set
             {
+                mode = value;
             }
         }
 
+        object objValue;
         public object Value
         {
             get
             {
-                throw new System.NotImplementedException();
+                return objValue;
             }
             set
             {
+                objValue = value;
             }
         }
 
-        public Adorns Adorns
+        Adorns adorn;
+        public Adorns Adorn
         {
             get
             {
-                throw new System.NotImplementedException();
+                return adorn;
             }
             set
             {
+                adorn = value;
             }
         }
 
+        List<Criteria> criterias;
         public List<Criteria> Criterias
         {
             get
             {
-                throw new System.NotImplementedException();
+                return criterias;
             }
             set
             {
+                criterias = value;
             }
+        }
+
+        int start;
+
+        public int Start
+        {
+            get { return start; }
+            set { start = value; }
+        }
+
+        int length;
+
+        public int Length
+        {
+            get { return length; }
+            set { length = value; }
+        }
+
+        public Criteria()
+        {
+            criterias = new List<Criteria>();
         }
     }
 }

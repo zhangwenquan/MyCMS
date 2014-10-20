@@ -8,116 +8,127 @@ namespace MyCMS.Data
 {
     public class DataParameter : IDbDataParameter
     {
+        byte precision;
         public byte Precision
         {
             get
             {
-                throw new NotImplementedException();
+                return precision;
             }
             set
             {
-                throw new NotImplementedException();
+                precision = value;
             }
         }
 
+        byte scale;
         public byte Scale
         {
             get
             {
-                throw new NotImplementedException();
+                return scale;
             }
             set
             {
-                throw new NotImplementedException();
+                scale = value;
             }
         }
 
+        int size;
         public int Size
         {
             get
             {
-                throw new NotImplementedException();
+                return size;
             }
             set
             {
-                throw new NotImplementedException();
+                size = value;
             }
         }
 
+        DbType type;
         public DbType DbType
         {
             get
             {
-                throw new NotImplementedException();
+                return type;
             }
             set
             {
-                throw new NotImplementedException();
+                type = value;
             }
         }
 
+        ParameterDirection direction;
         public ParameterDirection Direction
         {
             get
             {
-                throw new NotImplementedException();
+                return direction;
             }
             set
             {
-                throw new NotImplementedException();
+                direction = value;
             }
         }
 
+        bool isNullable;
         public bool IsNullable
         {
-            get { throw new NotImplementedException(); }
+            get { return isNullable; }
+            set { isNullable = value; }
         }
 
+        string parameterName;
         public string ParameterName
         {
             get
             {
-                throw new NotImplementedException();
+                return parameterName;
             }
             set
             {
-                throw new NotImplementedException();
+                parameterName = value;
             }
         }
 
+        string sourceColumn;
         public string SourceColumn
         {
             get
             {
-                throw new NotImplementedException();
+                return sourceColumn;
             }
             set
             {
-                throw new NotImplementedException();
+                sourceColumn = value;
             }
         }
 
+        DataRowVersion srcVersion;
         public DataRowVersion SourceVersion
         {
             get
             {
-                throw new NotImplementedException();
+                return srcVersion;
             }
             set
             {
-                throw new NotImplementedException();
+                srcVersion = value;
             }
         }
 
+        object objValue;
         public object Value
         {
             get
             {
-                throw new NotImplementedException();
+                return objValue;
             }
             set
             {
-                throw new NotImplementedException();
+                objValue = value;
             }
         }
     }

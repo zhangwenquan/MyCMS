@@ -31,9 +31,9 @@ namespace MyCMS.Data
             get { return size; }
             set { size = value; }
         }
-        private int scale;
+        private byte scale;
 
-        public int Scale
+        public byte Scale
         {
             get { return scale; }
             set { scale = value; }
@@ -88,13 +88,13 @@ namespace MyCMS.Data
         public void FromXml(XmlElement e)
         {
             string temp = string.Empty;
-            field = e.GetAttribute("field");
+            field = e.GetAttribute("o");
             name = e.GetAttribute("name");
             description = e.GetAttribute("description");
             temp = e.GetAttribute("size");
             size = temp == string.Empty ? 0 : Convert.ToInt32(temp);
             temp = e.GetAttribute("scale");
-            scale = temp == string.Empty ? 0 : Convert.ToInt32(scale);
+            scale = temp == string.Empty ? (Byte)0 : Convert.ToByte(temp);
             temp = e.GetAttribute("nullable");
             nullable = temp == string.Empty ? true : Convert.ToBoolean(temp);
             type = (DbType)Enum.Parse(typeof(DbType), e.GetAttribute("type"), true);
