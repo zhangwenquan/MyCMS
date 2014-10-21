@@ -75,13 +75,11 @@ namespace MyCMS.Data
             }
         }
 
-        public abstract void Build();
+        public abstract void Build(bool forContent = false) ;
 
-        public abstract void Build(bool forContent);
-
-        string AddParameter(Property p, object value)
+        public string AddParameter(Property p, object value)
         {
-            string parameter = string.Format("{0}P{1}", Prefix, p.Name);
+            string parameter = string.Format("{0}P{1}", Prefix, parametersCount++);
             DataParameter dp = new DataParameter();
 
             dp.ParameterName = p.Name;
@@ -92,26 +90,31 @@ namespace MyCMS.Data
             dp.IsNullable = p.Nullable;
             dp.DbType = p.Type;
 
+            sql.Parameters.Add(dp);
+
             return parameter;
         }
 
-        string MakeCondition(Criteria condition)
+        /// <summary>
+        /// 注意过滤条件中的字段应在表中存在，而propertyDict包含了表中的所有字段
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <returns></returns>
+        public string MakeCondition(Criteria condition)
         {
             StringBuilder s = new StringBuilder();
             if (condition.Type != CriteriaType.None)
             {
                 if (!EntityObject.PropertyDict.ContainsKey(condition.Field))
                 {
-                    throw new Exception("No such field in object. " + condition.Field);
+                    throw new Exception("No such conListFieldDict in object. " + condition.Field);
                 }
                 if (condition.Type == CriteriaType.IsNull)
                     s.AppendFormat("{0} IS NULL", Connection.Driver.FormatField(condition.Adorn, condition.Field, condition.Start, condition.Length));
                 else if (condition.Type == CriteriaType.IsNotNull)
                     s.AppendFormat("{0} IS NOT NULL", Connection.Driver.FormatField(condition.Adorn, condition.Field, condition.Start, condition.Length));
                 else
-                {
                     s.AppendFormat("{0} {1} {2}", Connection.Driver.FormatField(condition.Adorn, condition.Field, condition.Start, condition.Length), Connection.Driver.GetCriteria(condition.Type), AddParameter(EntityObject.PropertyDict[condition.Field], condition.Value));
-                }
             }
 
             int num = condition.Criterias.Count;
@@ -127,7 +130,7 @@ namespace MyCMS.Data
                 {
                     s.AppendFormat("{0} {1} ", MakeCondition(sub), mode);
                 }
-                s.Length = s.Length - mode.Length - 1;
+                s.Length = s.Length - mode.Length - 2;
                 if (num > 1)
                 {
                     s.Append(")");

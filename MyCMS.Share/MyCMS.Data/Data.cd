@@ -17,7 +17,7 @@
   <Class Name="MyCMS.Data.Order" Collapsed="true">
     <Position X="12.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <HashCode>AACAAAAAAKAAAACgAEAAAApAAAAKAAAAAAAAAAAAgAA=</HashCode>
       <FileName>Order.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -99,24 +99,24 @@
       <FileName>BaseHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyCMS.Data.OperateHandle">
+  <Class Name="MyCMS.Data.OperateHandle" Collapsed="true">
     <Position X="1.75" Y="3.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AACAAAABAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAmAAAABAABAACAAAAABAAAAAAAAoAAAAiAQAAAAkAA=</HashCode>
       <FileName>OperateHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyCMS.Data.InsertHandle">
     <Position X="0.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAAABAgAAAwAAAAAAAAAAAEAAAgAAAA=</HashCode>
       <FileName>InsertHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyCMS.Data.DeleteHandle">
     <Position X="7.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>InsertHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -144,7 +144,7 @@
   <Class Name="MyCMS.Data.ListField" Collapsed="true">
     <Position X="10.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIIAAACCAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ListField.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -195,7 +195,7 @@
       <FileName>IConnection.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="MyCMS.Data.IDbDriver" Collapsed="true">
+  <Interface Name="MyCMS.Data.IDbDriver">
     <Position X="15.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEEAAAEAAAICAAAEAAAAAAAAAAAAAIA=</HashCode>

@@ -44,5 +44,29 @@ namespace MyCMS.Data.Test
             Assert.AreEqual(34, ((Database)(ds.DatabaseDict["We7.CMS.Common"])).EntityObjs["Channel"].PropertyDict.Count);
             Assert.AreEqual(6, ((Database)(ds.DatabaseDict["We7.CMS.Common"])).EntityObjs["VoteAnswerStat"].PropertyDict.Count);
         }
+
+        [TestMethod]
+        public void MakeConditionTest()
+        {
+            OperateHandle oh = new OperateHandle();
+            oh.EntityObject = new EntityObject();
+            oh.EntityObject.PropertyDict.Add("a", new Property());
+            oh.EntityObject.PropertyDict.Add("b", new Property());
+            oh.Connection = new SqlDbDriver().CreateConnection("adf");
+            Criteria c = new Criteria();
+            c.Adorn = Adorns.None;
+            c.Field = "a";
+            c.Mode = CriteriaMode.And;
+            c.Type = CriteriaType.Equals;
+            c.Value = '1';
+            Criteria sub = new Criteria();
+            sub.Adorn = Adorns.Max;
+            sub.Field = "b";
+            sub.Mode = CriteriaMode.Or;
+            sub.Type = CriteriaType.IsNotNull;
+            c.Criterias.Add(sub);
+            Assert.AreEqual("[a] = @P0 AND [b] IS NOT NULL", oh.MakeCondition(c), true);
+            Assert.AreEqual(1, oh.Sql.Parameters.Count);
+        }
     }
 }

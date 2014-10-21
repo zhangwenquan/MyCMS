@@ -121,6 +121,12 @@ namespace MyCMS.Data
                     propertyDict[pi.Name].Info = pi;
                 }
             }
+
+            foreach (Property p in PropertyDict.Values)
+            {
+                if (p.Info == null)
+                    throw new Exception("Unknown Property");
+            }
         }
     }
 }

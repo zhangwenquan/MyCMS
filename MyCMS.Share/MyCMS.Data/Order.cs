@@ -7,48 +7,72 @@ namespace MyCMS.Data
 {
     public class Order
     {
+        string field;
         public string Field
         {
             get
             {
-                throw new System.NotImplementedException();
+                return field;
             }
             set
             {
+                field = value;
             }
         }
 
+        OrderMode mode;
         public OrderMode Mode
         {
             get
             {
-                throw new System.NotImplementedException();
+                return mode;
             }
             set
             {
+                mode = value;
             }
         }
 
-        public Adorns Adorns
+        Adorns adorn;
+        public Adorns Adorn
         {
             get
             {
-                throw new System.NotImplementedException();
+                return adorn;
             }
             set
             {
+                adorn = value;
             }
         }
 
+        string aliasField;
         public string AliasField
         {
             get
             {
-                throw new System.NotImplementedException();
+                return aliasField;
             }
             set
             {
+                aliasField = value;
             }
+        }
+
+        int start;
+
+        public int Start
+        {
+            get { return start; }
+            set { start = value; }
+        }
+
+        int length;
+
+        public int Length
+        {
+            get { return length; }
+            set { length = value; }
         }
     }
 }
