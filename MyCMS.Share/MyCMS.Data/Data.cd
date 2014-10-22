@@ -32,7 +32,7 @@
   <Class Name="MyCMS.Data.ObjectAssistant" Collapsed="true">
     <Position X="15.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BQQAgEAAAEAAAAEAAEAIACQAAAEAAAAAAAAAQAAAAQI=</HashCode>
+      <HashCode>BQQAgEAAAEAAAAAAAEAIACQAAAEAAAAAAAAAQAAAAAI=</HashCode>
       <FileName>ObjectAssistant.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -70,7 +70,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AKAAAAEAABAhAAAQICAAAAAAAAIAgBABECCQARCAgBA=</HashCode>
+      <HashCode>AKAAAAEAABBhAAAQICAAAAABAAIAgBABECCQARCAgBA=</HashCode>
       <FileName>EntityObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -87,10 +87,9 @@
       <FileName>Property.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyCMS.Data.BaseHandle">
+  <Class Name="MyCMS.Data.BaseHandle" Collapsed="true">
     <Position X="5.25" Y="0.75" Width="1.75" />
     <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -102,42 +101,42 @@
   <Class Name="MyCMS.Data.OperateHandle" Collapsed="true">
     <Position X="1.75" Y="3.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAmAAAABAABAACAAAAABAAAAAAAAoAAAAiAQAAAAkAA=</HashCode>
+      <HashCode>AAmAAAABAAAAACAAAAABAAAAAAAgoAAAAiAQAAAAkAA=</HashCode>
       <FileName>OperateHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyCMS.Data.InsertHandle">
+  <Class Name="MyCMS.Data.InsertHandle" Collapsed="true">
     <Position X="0.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAABAgAAAwAAAAAAAAAAAEAAAgAAAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAQABAgAAAwAAAAAgAAAAAEAAAgAAAA=</HashCode>
       <FileName>InsertHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyCMS.Data.DeleteHandle">
+  <Class Name="MyCMS.Data.DeleteHandle" Collapsed="true">
     <Position X="7.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAQAAAgAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>InsertHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyCMS.Data.UpdateHandle">
+  <Class Name="MyCMS.Data.UpdateHandle" Collapsed="true">
     <Position X="5.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAgAAAAQAAAgAAAAAAAAAgAAgAAAAIAAAAAA=</HashCode>
       <FileName>InsertHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyCMS.Data.SelectHandle">
+  <Class Name="MyCMS.Data.SelectHandle" Collapsed="true">
     <Position X="3" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>InsertHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyCMS.Data.CountHandle">
+  <Class Name="MyCMS.Data.CountHandle" Collapsed="true">
     <Position X="7.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAQAAAgAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>InsertHandle.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -188,22 +187,32 @@
       <FileName>TableInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="MyCMS.Data.IConnection">
+  <Class Name="MyCMS.Data.DataException" Collapsed="true">
+    <Position X="10.5" Y="0.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>DataException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MyCMS.Data.IConnection" Collapsed="true">
     <Position X="0.5" Y="7.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAQAAEAAAAAAAAADAAAAAABAAAAAgAgAAAAABAAAAAA=</HashCode>
       <FileName>IConnection.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="MyCMS.Data.IDbDriver">
+  <Interface Name="MyCMS.Data.IDbDriver" Collapsed="true">
     <Position X="15.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEEAAAEAAAICAAAEAAAAAAAAAAAAAIA=</HashCode>
       <FileName>IDbDriver.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="MyCMS.Data.IConnectionEx">
-    <Position X="1" Y="11.25" Width="1.75" />
+  <Interface Name="MyCMS.Data.IConnectionEx" Collapsed="true">
+    <Position X="1" Y="9.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACAAAAAAAAA=</HashCode>
       <FileName>IConnectionEx.cs</FileName>
@@ -242,6 +251,13 @@
     <TypeIdentifier>
       <HashCode>ACAAAAAAAFAAAAAAEAAAAAQAAAAAAAAAAAAAAAEAAAQ=</HashCode>
       <FileName>Adorns.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MyCMS.Data.ErrorCodes" Collapsed="true">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAGIAAgAAAAAAgCAAAACAiAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>ErrorCode.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Microsoft YaHei UI" Size="9" />

@@ -47,9 +47,11 @@
     <Compile Include="CriteriaMode.cs" />
     <Compile Include="CriteriaType.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="DataException.cs" />
     <Compile Include="DataParameter.cs" />
     <Compile Include="Dictionaries.cs" />
     <Compile Include="EntityObject.cs" />
+    <Compile Include="ErrorCode.cs" />
     <Compile Include="ErrorCodes.cs" />
     <Compile Include="IConnection.cs" />
     <Compile Include="IConnectionEx.cs" />

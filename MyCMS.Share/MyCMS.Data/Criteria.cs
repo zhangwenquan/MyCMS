@@ -104,6 +104,21 @@ namespace MyCMS.Data
         public Criteria()
         {
             criterias = new List<Criteria>();
+            mode = CriteriaMode.And;
+            type = CriteriaType.None;
+        }
+
+        public Criteria(CriteriaType type)
+            : this()
+        {
+            this.type = type;
+        }
+
+        public Criteria(CriteriaType type, string name, object o)
+            : this(type)
+        {
+            this.field = name;
+            this.objValue = o;
         }
     }
 }

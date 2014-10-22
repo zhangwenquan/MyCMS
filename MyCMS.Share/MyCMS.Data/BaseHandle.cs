@@ -67,11 +67,11 @@ namespace MyCMS.Data
             sql = new SqlStatement();
         }
 
-        public void BuildCondition(Criteria c)
+        public void BuildCondition()
         {
-            if (c != null)
+            if (Criteria != null)
             {
-                condition = MakeCondition(c);
+                condition = MakeCondition(Criteria);
             }
         }
 

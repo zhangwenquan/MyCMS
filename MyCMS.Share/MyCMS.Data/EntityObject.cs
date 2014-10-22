@@ -82,7 +82,7 @@ namespace MyCMS.Data
 
         public EntityObject()
         {
-            propertyDict = new Dictionary<string, Property>();
+            propertyDict = new Dictionary<string, Property>(StringComparer.InvariantCultureIgnoreCase);
         }
 
         public object Clone()
@@ -127,6 +127,45 @@ namespace MyCMS.Data
                 if (p.Info == null)
                     throw new Exception("Unknown Property");
             }
+        }
+
+        public Criteria BuildCriteria(object o)
+        {
+            Criteria root = null;
+            string[] primaryNames = PrimaryKey.Split(new char[]{';'}, StringSplitOptions.RemoveEmptyEntries);
+            if (primaryNames.Length == 0)
+                throw new Exception("No Primary Key");
+
+            foreach (string key in primaryNames)
+            {
+                object value = PropertyDict[key].Info.GetValue(o);
+                Criteria criteria = new Criteria(CriteriaType.Equals, key, value);
+                if (root == null)
+                    root = criteria;
+                else
+                    root.Criterias.Add(criteria);
+            }
+
+            return root;
+        }
+
+        public string BuildOrders()
+        {
+            StringBuilder s = new StringBuilder();
+
+            string[] keys = primaryKey.Split(new char[]{';'}, StringSplitOptions.RemoveEmptyEntries);
+            if (keys.Length == 0)
+                throw new Exception("No Primary Key");
+
+            foreach (string key in keys)
+            {
+                if (!PropertyDict.ContainsKey(key))
+                    throw new Exception("Unknown Property");
+                s.AppendFormat("{0} ASC,", key);
+            }
+            s.Length -= 1;
+
+            return s.ToString();
         }
     }
 }

@@ -48,7 +48,18 @@ namespace MyCMS.Data
 
         public virtual string BuildPaging(string tablename, string fields, string where, string orders, int from, int count)
         {
-            return string.Format("SELECT {0} FROM {1} {2} {3} OFFSET {4} FETCH {5}", fields, tablename, where, orders, from, count);
+            StringBuilder s = new StringBuilder();
+            s.AppendFormat("SELECT {0} FROM {1}", fields, tablename);
+            if (!string.IsNullOrEmpty(where))
+                s.AppendFormat(" WHERE {0}", where);
+            if (!string.IsNullOrEmpty(orders))
+                s.AppendFormat(" ORDER BY {0}", orders);
+            if (from > 0)
+                s.AppendFormat(" OFFSET {0} COUNT {1}", from, count);
+            else if (count > 0)
+                s.AppendFormat(" OFFSET 0 COUNT {0}", count);
+
+            return s.ToString();
         }
 
 

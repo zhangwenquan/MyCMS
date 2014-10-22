@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace MyCMS.Data
 {
@@ -47,13 +48,13 @@ namespace MyCMS.Data
 
         public OperateHandle()
         {
-            listFieldDict = new Dictionary<string, ListField>(StringComparer.OrdinalIgnoreCase);
-            conListFieldDict = new Dictionary<string, ConListField>();
+            listFieldDict = new Dictionary<string, ListField>(StringComparer.InvariantCultureIgnoreCase);
+            conListFieldDict = new Dictionary<string, ConListField>(StringComparer.InvariantCultureIgnoreCase);
         }
 
-        public override void Build(bool forContent)
+        public override void Build(bool forContent = false)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void BuildFields(bool readonlyAllowed, bool forContent = false)
@@ -72,15 +73,18 @@ namespace MyCMS.Data
                 {
                     if (!readonlyAllowed && p.Readonly)
                         continue;
-                    if (listFieldDict.ContainsKey(p.Name))
+                    Adorns a = Adorns.None;
+                    if (ListFieldDict.Count > 0)
                     {
-                        ListField field = listFieldDict[p.Name];
-                        s.Append(Connection.Driver.FormatField(field.Adorn, field.Fieldname)+",");
+                        if (ListFieldDict.ContainsKey(p.Name))
+                            a = listFieldDict[p.Name].Adorn;
                     }
+                    
+                    s.Append(Connection.Driver.FormatField(a, p.Field) + ",");
                 }
             }
 
-            s.Length = s.Length - 1;
+            s.Length -= 1;
             fields = s.ToString();
         }
 
@@ -106,26 +110,18 @@ namespace MyCMS.Data
             }
         }
 
-        public void BuildOrders(bool forContent = false)
+        public void BindObject(object o, DataRow dr)
         {
-            StringBuilder s = new StringBuilder();
-            foreach (Order o in orderList)
+            foreach (Property p in EntityObject.PropertyDict.Values)
             {
-                if (forContent)
-                {
-                    if (!conListFieldDict.ContainsKey(o.Field))
-                        throw new Exception(string.Format("unknown fieldValues {0} to table {1}", o.Field, EntityObject.TableName));
-                    s.AppendFormat("{0} {1},", Connection.Driver.FormatField(o.Adorn, o.AliasField, o.Start, o.Length), o.Mode == OrderMode.Asc ? "ASC" : "DESC");
-                }
-                else
-                {
-                    if (!listFieldDict.ContainsKey(o.Field))
-                        throw new Exception(string.Format("unknown fieldValues {0} to table {1}", o.Field, EntityObject.TableName));
-                    s.AppendFormat("{0} {1},", Connection.Driver.FormatField(o.Adorn, o.Field, o.Start, o.Length), o.Mode == OrderMode.Asc ? "ASC" : "DESC");
-                }
+                if (ListFieldDict.Count > 0 &&
+                    !ListFieldDict.ContainsKey(p.Field))
+                    continue;
+                object v = dr[p.Field];
+                if (v == DBNull.Value)
+                    v = null;
+                p.Info.SetValue(o, v);
             }
-            s.Length -= 1;
-            orders = s.ToString();
         }
     }
 }

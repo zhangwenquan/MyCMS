@@ -68,5 +68,6 @@ namespace MyCMS.Data.Test
             Assert.AreEqual("[a] = @P0 AND [b] IS NOT NULL", oh.MakeCondition(c), true);
             Assert.AreEqual(1, oh.Sql.Parameters.Count);
         }
+
     }
 }

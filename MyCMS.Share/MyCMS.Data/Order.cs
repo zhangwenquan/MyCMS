@@ -74,5 +74,23 @@ namespace MyCMS.Data
             get { return length; }
             set { length = value; }
         }
+
+        public Order()
+        {
+            adorn = Adorns.None;
+        }
+
+        public Order(string name)
+            : this()
+        {
+            field = name;
+            mode = OrderMode.Asc;
+        }
+
+        public Order(string name, OrderMode mode): this()
+        {
+            field = name;
+            this.mode = mode;
+        }
     }
 }

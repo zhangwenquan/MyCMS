@@ -68,39 +68,90 @@ namespace MyCMS.Data
             return conn;
         }
 
-        public object Insert(IConnection conn, object obj, string[] fields, string tablename)
+        public object Insert(IConnection conn, object obj, string[] fields)
         {
-            throw new System.NotImplementedException();
+            ObjectManager om = _d1.ObjectManagerDict[obj.GetType()];
+            object identity = null;
+            return om.MyInsert(conn, obj, fields, out identity);
         }
 
-        public object Select(IConnection conn, object obj, string[] fields, string tablename)
+        public object Insert(IConnection conn, object obj, string[] fields, string tablename)
         {
-            throw new System.NotImplementedException();
+            ObjectManager om = _d1.ObjColumnDic[tablename];
+            object identity = null;
+            return om.MyInsert(conn, obj, fields, out identity);
+        }
+
+        public void Select(IConnection conn, object obj, string[] fields)
+        {
+            ObjectManager om = _d1.ObjectManagerDict[obj.GetType()];
+            om.MySelect(conn, obj, fields);
+        }
+
+        public void Select(IConnection conn, object obj, string[] fields, string tablename)
+        {
+            ObjectManager om = _d1.ObjColumnDic[tablename];
+            om.MySelect(conn, obj, fields);
+        }
+        public bool Delete(IConnection conn, object obj)
+        {
+            ObjectManager om = _d1.ObjectManagerDict[obj.GetType()];
+            return om.MyDelete(conn, obj) == 1;
         }
 
         public bool Delete(IConnection conn, object obj, string tablename)
         {
-            throw new System.NotImplementedException();
+            ObjectManager om = _d1.ObjColumnDic[tablename];
+            return om.MyDelete(conn, obj) == 1;
         }
+
+        public int Update(IConnection conn, object obj, string[] fields, Criteria condition)
+        {
+            ObjectManager om = _d1.ObjectManagerDict[obj.GetType()];
+            return om.MyUpdate(conn, obj, fields, condition);
+        }
+
 
         public int Update(IConnection conn, object obj, string[] fields, string tablename, Criteria condition)
         {
-            throw new System.NotImplementedException();
+            ObjectManager om = _d1.ObjColumnDic[tablename];
+            return om.MyUpdate(conn, obj, fields, condition);
+        }
+
+        public int Count<T>(IConnection conn, Criteria condition)
+        {
+            ObjectManager om = _d1.ObjectManagerDict[typeof(T)];
+            return om.MyCount(conn, condition);
         }
 
         public int Count<T>(IConnection conn, Criteria condition, string tablename)
         {
-            throw new System.NotImplementedException();
+            ObjectManager om = _d1.ObjColumnDic[tablename];
+            return om.MyCount(conn, condition);
         }
 
-        public void List<T>(IConnection conn, string condition, Order[] orders, string[] fields, int from, int count, string tablename)
+        public List<T> List<T>(IConnection conn, Criteria condition, Order[] orders, string[] fields, int from, int count, string tablename)
         {
-            throw new System.NotImplementedException();
+            ObjectManager om = _d1.ObjectManagerDict[typeof(T)];
+            return om.MyList<T>(conn, fields, condition, from, count, orders);
         }
 
-        public void DeleteList<T>(IConnection conn, Criteria conditino, string tablename)
+        public List<T> List<T>(IConnection conn, Criteria condition, Order[] orders, string[] fields, int from, int count, string tablename)
         {
-            throw new System.NotImplementedException();
+            ObjectManager om = _d1.ObjColumnDic[tablename];
+            return om.MyList<T>(conn, fields, condition, from, count, orders);
+        }
+        public int DeleteList<T>(IConnection conn, Criteria conditino)
+        {
+            ObjectManager om = _d1.ObjectManagerDict[typeof(T)];
+            return om.MyDeleteList(conn, conditino);
+        }
+
+
+        public int DeleteList<T>(IConnection conn, Criteria conditino, string tablename)
+        {
+            ObjectManager om = _d1.ObjColumnDic[tablename];
+            return om.MyDeleteList(conn, conditino);
         }
     }
 }

@@ -53,5 +53,10 @@ namespace MyCMS.Data
                 parameters = value;
             }
         }
+
+        public SqlStatement(string sql)
+        {
+            sqlClause = sql;
+        }
     }
 }

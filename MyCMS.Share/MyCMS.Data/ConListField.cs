@@ -56,5 +56,23 @@ namespace MyCMS.Data
             get { return size; }
             set { size = value; }
         }
+
+        public ConListField()
+        {
+            Adorn = Adorns.None;
+        }
+
+        public ConListField(string field, string alias) : this()
+        {
+            this.field = field;
+            this.aliasField = alias;
+        }
+
+        public ConListField(Adorns adorn, string field, string alias)
+        {
+            this.adorn = adorn;
+            this.field = field;
+            this.aliasField = alias;
+        }
     }
 }

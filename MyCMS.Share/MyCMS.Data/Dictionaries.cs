@@ -21,7 +21,7 @@ namespace MyCMS.Data
         {
             databaseDict = new Dictionary<string, IDatabase>();
             connectionDict = new Dictionary<IDatabase, IConnection>();
-            objColumnDic = new Dictionary<string, ObjectManager>();
+            objColumnDic = new Dictionary<string, ObjectManager>(StringComparer.InvariantCultureIgnoreCase);
             objectManagerDict = new Dictionary<Type, ObjectManager>();
         }
         /// <summary>
