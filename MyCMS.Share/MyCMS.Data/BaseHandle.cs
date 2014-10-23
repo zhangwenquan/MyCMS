@@ -107,7 +107,7 @@ namespace MyCMS.Data
             {
                 if (!EntityObject.PropertyDict.ContainsKey(condition.Field))
                 {
-                    throw new Exception("No such conListFieldDict in object. " + condition.Field);
+                    throw new Exception("no such field "+condition.Field);
                 }
                 if (condition.Type == CriteriaType.IsNull)
                     s.AppendFormat("{0} IS NULL", Connection.Driver.FormatField(condition.Adorn, condition.Field, condition.Start, condition.Length));

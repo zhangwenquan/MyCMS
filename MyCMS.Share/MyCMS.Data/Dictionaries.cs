@@ -94,7 +94,7 @@ namespace MyCMS.Data
 
                 foreach (EntityObject entity2Table in database.EntityObjs.Values)
                 {
-                    //entity2Table.Build();
+                    entity2Table.Build();
                     EntityObject copyEntity = entity2Table.Clone() as EntityObject;
                     
 
@@ -104,9 +104,9 @@ namespace MyCMS.Data
                     om.CurDatabase = database;
                     om.CurObject = entity2Table;
                     om.ObjType = entity2Table.ObjType;
-                    //objectManagerDict.Add(entity2Table.ObjType, om);
+                    objectManagerDict.Add(entity2Table.ObjType, om);
 
-                    //copyEntity.Build();
+                    copyEntity.Build();
                     om = new ObjectManager();
                     copyEntity.IsDataTable = true;
                     copyEntity.TypeForDT = typeof(TableInfo);

@@ -39,7 +39,7 @@ namespace MyCMS.Data
                 {
                     if (string.IsNullOrEmpty(driver))
                     {
-                        throw new Exception("DriverRequired");
+                        throw new DataException(ErrorCodes.DriverRequired);
                     }
                     try
                     {
@@ -48,7 +48,7 @@ namespace MyCMS.Data
                     }
                     catch
                     {
-                        throw new Exception("UnknownDriver");
+                        throw new DataException(ErrorCodes.DriverFailed);
                     }
                 }
                 
